@@ -15,7 +15,7 @@ const gestSortedMovies = (movies, sortBy) => {
   }
 };
 
-const MovieList = ({ title, movies, onUpdateMovie, onResetMovie }) => {
+const MovieList = ({ title, movies, onUpdateMovie, onResetMovie, onVote }) => {
   const [sortBy, setSortBy] = useState(SORT_BY.ACADEMY_AWARDS);
   const sortedMovies = gestSortedMovies(movies, sortBy);
 
@@ -40,6 +40,7 @@ const MovieList = ({ title, movies, onUpdateMovie, onResetMovie }) => {
               movie={movie}
               onUpdate={onUpdateMovie}
               onReset={onResetMovie}
+              onVote={onVote}
             />
           </li>
         ))}

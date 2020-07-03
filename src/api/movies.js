@@ -9,3 +9,9 @@ const headers = {
 export const getAllMovies = () => {
   return axios.get(`${apiUrl}/movies`, { headers }).then(res => res.data);
 };
+
+export const vote = (id, option) => {
+  return axios
+    .post(`${apiUrl}/movies/${id}/vote`, { option }, { headers })
+    .then(res => res.data);
+};

@@ -29,6 +29,15 @@ const App = () => {
     updateMovie(id, movie => ({ ...movie, bookmarked: false, watched: false }));
   };
 
+  const voteMovie = (id, option) => {
+    API.vote(id, option).then(movie => {
+      const movies = allMovies.map(m => {
+        return m._id === id ? movie : m;
+      });
+      setAllMovies(movies);
+    });
+  };
+
   return (
     <div className="app">
       <BrowserRouter>
@@ -41,6 +50,7 @@ const App = () => {
             allMovies={allMovies}
             onResetMovie={handleResetMovie}
             onUpdateMovie={handleUpdateMovie}
+            onVote={voteMovie}
           />
         </Route>
       </BrowserRouter>
