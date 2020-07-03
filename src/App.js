@@ -14,19 +14,19 @@ const App = () => {
     API.getAllMovies().then(data => setAllMovies(data));
   }, []);
 
-  const updateMovie = (id, callback) => {
-    const movies = allMovies.map(movie =>
-      movie._id === id ? callback(movie) : movie
-    );
+  const updateMovieState = (id, movie) => {
+    const movies = allMovies.map(m => (m._id === id ? movie : m));
     setAllMovies(movies);
   };
 
   const handleUpdateMovie = (id, shelf) => {
-    updateMovie(id, movie => ({ ...movie, [shelf]: true }));
+    const changingProp = { [shelf]: true };
+    API.update(id, changingProp).then(movie => updateMovieState(id, movie));
   };
 
   const handleResetMovie = id => {
-    updateMovie(id, movie => ({ ...movie, bookmarked: false, watched: false }));
+    const resetProps = { bookmarked: false, watched: false };
+    API.update(id, resetProps).then(movie => updateMovieState(id, movie));
   };
 
   const voteMovie = (id, option) => {

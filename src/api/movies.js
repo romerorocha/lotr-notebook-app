@@ -15,3 +15,9 @@ export const vote = (id, option) => {
     .post(`${apiUrl}/movies/${id}/vote`, { option }, { headers })
     .then(res => res.data);
 };
+
+export const update = (id, data) => {
+  return axios
+    .patch(`${apiUrl}/movies/${id}`, data, { headers })
+    .then(res => res.data);
+};
