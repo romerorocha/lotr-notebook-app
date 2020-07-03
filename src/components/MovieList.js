@@ -5,26 +5,18 @@ import * as API from '../api/movies';
 import Action from './Action';
 
 const SORT_BY = {
-  NAME: 'name',
-  ACADEMY_AWARDS: 'academyAwardWins',
-};
-
-const getSortedMovies = (movies, sortBy) => {
-  switch (sortBy) {
-    case SORT_BY.NAME:
-      return movies.slice().sort((a, b) => a[sortBy].localeCompare(b[sortBy]));
-    default:
-      return movies.slice().sort((a, b) => b[sortBy] - a[sortBy]);
-  }
+  NAME: { getSort: (a, b) => a.name.localeCompare(b.name) },
+  ACADEMY_AWARDS: {
+    getSort: (a, b) => b.academyAwardWins - a.academyAwardWins,
+  },
 };
 
 const MovieList = ({ title, movies, setMovies, filter }) => {
   // Component state
   const [sortBy, setSortBy] = useState(SORT_BY.ACADEMY_AWARDS);
 
-  // Computed lists
-  const filteredMovies = movies.filter(filter);
-  const sortedMovies = getSortedMovies(filteredMovies, sortBy);
+  // Computed list
+  const subList = movies.filter(filter).sort(sortBy.getSort);
 
   // Handle movie updates
   const updateMovie = movie => {
@@ -58,7 +50,7 @@ const MovieList = ({ title, movies, setMovies, filter }) => {
         </button>
       </h3>
       <ul>
-        {sortedMovies.map(movie => {
+        {subList.map(movie => {
           const marked = movie.bookmarked || movie.watched;
           return (
             <li key={movie._id} className="movie-list-item">
