@@ -36,7 +36,7 @@ const MovieList = ({ title, movies, setMovies, filter }) => {
     API.update(id, { watched: false, bookmarked: false }).then(updateMovie);
 
   return (
-    <div className="movie-list">
+    <div className="list">
       <h3>
         <span>{title}</span>
         <button
@@ -53,7 +53,7 @@ const MovieList = ({ title, movies, setMovies, filter }) => {
         {subList.map(movie => {
           const marked = movie.bookmarked || movie.watched;
           return (
-            <li key={movie._id} className="movie-list-item">
+            <li key={movie._id} className="list-item">
               <div>
                 <div>{movie.name}</div>
                 <div>
