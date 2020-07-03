@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import * as API from '../api/movies';
 
 import MovieList from '../components/MovieList';
-import PageTitle from '../components/PageTitle';
+import Page from '../components/Page';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -13,8 +13,7 @@ const Movies = () => {
   }, []);
 
   return (
-    <div>
-      <PageTitle title="The Lord of The Rings" path="movies" />
+    <Page>
       <MovieList
         title="Movies"
         movies={movies}
@@ -33,7 +32,7 @@ const Movies = () => {
         setMovies={setMovies}
         filter={m => m.bookmarked}
       />
-    </div>
+    </Page>
   );
 };
 
