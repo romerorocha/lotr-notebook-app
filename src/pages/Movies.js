@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
+import * as API from '../api/movies';
 
 import MovieList from '../components/MovieList';
 import PageTitle from '../components/PageTitle';
 
-const Movies = ({ allMovies, onResetMovie, onUpdateMovie, onVote }) => {
-  const watched = allMovies.filter(movie => movie.watched);
-  const bookmarked = allMovies.filter(movie => movie.bookmarked);
-  const movies = allMovies.filter(movie => !movie.watched && !movie.bookmarked);
+const Movies = () => {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    API.getAllMovies().then(data => setMovies(data));
+  }, []);
 
   return (
     <div>
@@ -14,23 +18,20 @@ const Movies = ({ allMovies, onResetMovie, onUpdateMovie, onVote }) => {
       <MovieList
         title="Movies"
         movies={movies}
-        onUpdateMovie={onUpdateMovie}
-        onResetMovie={onResetMovie}
-        onVote={onVote}
+        setMovies={setMovies}
+        filter={m => !(m.watched || m.bookmarked)}
       />
       <MovieList
         title="Watched"
-        movies={watched}
-        onUpdateMovie={onUpdateMovie}
-        onResetMovie={onResetMovie}
-        onVote={onVote}
+        movies={movies}
+        setMovies={setMovies}
+        filter={m => m.watched}
       />
       <MovieList
         title="Bookmarked"
-        movies={bookmarked}
-        onUpdateMovie={onUpdateMovie}
-        onResetMovie={onResetMovie}
-        onVote={onVote}
+        movies={movies}
+        setMovies={setMovies}
+        filter={m => m.bookmarked}
       />
     </div>
   );
