@@ -1,23 +1,13 @@
-import axios from 'axios';
-
-const apiUrl = 'http://localhost:5000';
-const token = process.env.REACT_APP_API_TOKEN;
-const headers = {
-  Authorization: `Bearer ${token}`,
-};
+import server from './config';
 
 export const getAllMovies = () => {
-  return axios.get(`${apiUrl}/movies`, { headers }).then(res => res.data);
+  return server.get('movies').then(res => res.data);
 };
 
 export const vote = (id, option) => {
-  return axios
-    .post(`${apiUrl}/movies/${id}/vote`, { option }, { headers })
-    .then(res => res.data);
+  return server.post(`movies/${id}/vote`, { option }).then(res => res.data);
 };
 
 export const update = (id, data) => {
-  return axios
-    .patch(`${apiUrl}/movies/${id}`, data, { headers })
-    .then(res => res.data);
+  return server.patch(`movies/${id}`, data).then(res => res.data);
 };
