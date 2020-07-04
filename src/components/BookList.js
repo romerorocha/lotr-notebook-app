@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const BookList = ({ title, books }) => {
   return (
@@ -8,7 +9,9 @@ const BookList = ({ title, books }) => {
         {books.map(book => (
           <li key={book._id} className="list-item">
             <div>
-              <strong>{book.name}</strong>
+              <Link to={`/books/${book._id}`}>
+                <strong>{book.name}</strong>
+              </Link>
             </div>
             <div>Reviews: {book.reviews.length}</div>
           </li>

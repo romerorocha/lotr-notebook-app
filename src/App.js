@@ -1,10 +1,10 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
-
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Menu from './components/Menu';
+import BookDetails from './pages/BookDetails';
+import Books from './pages/Books';
 import Home from './pages/Home';
 import Movies from './pages/Movies';
-import Books from './pages/Books';
 
 const App = () => {
   return (
@@ -12,15 +12,20 @@ const App = () => {
       <h1>The Lord of The Rings Notebook</h1>
       <BrowserRouter>
         <Menu />
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/movies">
-          <Movies />
-        </Route>
-        <Route path="/books">
-          <Books />
-        </Route>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/movies">
+            <Movies />
+          </Route>
+          <Route path="/books/:id">
+            <BookDetails />
+          </Route>
+          <Route path="/books">
+            <Books />
+          </Route>
+        </Switch>
       </BrowserRouter>
     </div>
   );

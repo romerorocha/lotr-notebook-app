@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-
 import * as API from '../api/movies';
-
 import Action from './Action';
 
 const SORT_BY = {

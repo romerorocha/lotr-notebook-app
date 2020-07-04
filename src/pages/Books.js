@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
-
-import Page from '../components/Page';
-import BookList from '../components/BookList';
-
+import React, { useEffect, useState } from 'react';
 import * as API from '../api/books';
+import BookList from '../components/BookList';
+import Page from '../components/Page';
 
 const Books = () => {
   const [books, setBooks] = useState([]);
