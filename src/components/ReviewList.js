@@ -1,8 +1,9 @@
 import React from 'react';
 
 const ReviewList = ({ reviews }) => {
-  return reviews
-    ? reviews.map(review => (
+  return reviews ? (
+    <div className="review-list">
+      {reviews.map(review => (
         <div key={review._id}>
           <hr />
           <div>
@@ -24,8 +25,11 @@ const ReviewList = ({ reviews }) => {
             <span>{review.text}</span>
           </div>
         </div>
-      ))
-    : false;
+      ))}
+    </div>
+  ) : (
+    false
+  );
 };
 
 export default ReviewList;
