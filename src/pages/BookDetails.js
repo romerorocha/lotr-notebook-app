@@ -21,36 +21,36 @@ const BookDetails = () => {
   const [showForm, setShowForm] = useState(false);
 
   const [book, setBook] = useState({});
-  const ratingAverage = getReviewsAverage(book.reviews);
+  const [reviews, setReviews] = useState([]);
+  const ratingAverage = getReviewsAverage(reviews);
 
   useEffect(() => {
-    API.getBook(id).then(book => setBook(book));
+    API.getBook(id).then(book => {
+      const { _id, name, reviews } = book;
+      setBook({ _id, name });
+      setReviews(reviews);
+    });
   }, [id]);
 
   const toggleForm = () => setShowForm(!showForm);
 
   const handleAddReview = review => {
-    return API.addReview(book._id, review).then(newReview => {
-      const newBook = { ...book, reviews: book.reviews.concat(newReview) };
-      setBook(newBook);
-    });
+    return API.addReview(book._id, review).then(newReview =>
+      setReviews(reviews.concat(newReview))
+    );
   };
 
   const handleUpdateReview = review => {
-    return API.updateReview(book._id, review).then(newReview => {
-      const newReviews = book.reviews.map(r => {
-        return r._id === newReview._id ? newReview : r;
-      });
-      const newBook = { ...book, reviews: newReviews };
-      setBook(newBook);
+    return API.updateReview(book._id, review).then(data => {
+      const newList = reviews.map(r => (r._id === data._id ? data : r));
+      setReviews(newList);
     });
   };
 
   const handleDeleteReview = id => {
     API.deleteReview(book._id, id).then(() => {
-      const newReviews = book.reviews.filter(r => r._id !== id);
-      const newBook = { ...book, reviews: newReviews };
-      setBook(newBook);
+      const newList = reviews.filter(r => r._id !== id);
+      setReviews(newList);
     });
   };
 
@@ -59,13 +59,13 @@ const BookDetails = () => {
       <div>
         <strong>{book.name}</strong>
       </div>
-      <div>Reviews: {book.reviews.length}</div>
+      <div>Reviews: {reviews.length}</div>
       <div>Rating Average: {ratingAverage}</div>
       <div>
         <button onClick={toggleForm}>Add review</button>
       </div>
       <Reviews
-        reviews={book.reviews}
+        reviews={reviews}
         showForm={showForm}
         toggleForm={toggleForm}
         handleAdd={handleAddReview}
