@@ -52,10 +52,6 @@ div ~ div {
   padding: 10px 0;
 }
 
-.sort-button {
-  margin-left: 10px;
-}
-
 .review-form,
 .review-list {
   margin-top: 30px;
@@ -73,4 +69,8 @@ textarea {
 
 textarea {
   width: 100%;
+}
+
+button {
+  margin-right: 10px;
 }

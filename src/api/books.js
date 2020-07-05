@@ -11,3 +11,15 @@ export const getBook = id => {
 export const addReview = (bookId, review) => {
   return server.post(`books/${bookId}/reviews`, review).then(res => res.data);
 };
+
+export const updateReview = (bookId, review) => {
+  return server
+    .put(`books/${bookId}/reviews/${review._id}`, review)
+    .then(res => res.data);
+};
+
+export const deleteReview = (bookId, reviewId) => {
+  return server
+    .delete(`books/${bookId}/reviews/${reviewId}`)
+    .then(res => res.data);
+};

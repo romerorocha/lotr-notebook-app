@@ -36,7 +36,7 @@ const MovieList = ({ title, movies, setMovies, filter }) => {
   return (
     <div className="list">
       <h3>
-        <span>{title}</span>
+        <span>{title} </span>
         <button
           className="sort-button"
           onClick={() => setSortBy(SORT_BY.ACADEMY_AWARDS)}
@@ -55,7 +55,7 @@ const MovieList = ({ title, movies, setMovies, filter }) => {
               <div>
                 <div>{movie.name}</div>
                 <div>
-                  <span>{`Score: ${movie.score}`}</span>
+                  <span>{`Score: ${movie.score} `}</span>
                   <Action
                     show
                     icon="fa-thumbs-up"
@@ -69,7 +69,7 @@ const MovieList = ({ title, movies, setMovies, filter }) => {
                 </div>
                 <div>{`Academy Awards: ${movie.academyAwardWins}`}</div>
                 <div>
-                  <span>Actions:</span>
+                  <span>Actions: </span>
                   <Action
                     show={!marked}
                     action={() => setBookmarked(movie._id)}
