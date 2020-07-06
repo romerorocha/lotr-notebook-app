@@ -14,6 +14,9 @@ const Menu = () => {
         <li className="menu-item">
           <Link to="/books">Books</Link>
         </li>
+        <li className="menu-item">
+          <Link to="/search-character">Character Search</Link>
+        </li>
       </ul>
     </div>
   );

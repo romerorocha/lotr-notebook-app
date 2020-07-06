@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Menu from './components/Menu';
 import BookDetails from './pages/BookDetails';
 import Books from './pages/Books';
+import CharacterDetails from './pages/CharacterDetails';
+import CharacterSearch from './pages/CharacterSearch';
 import Home from './pages/Home';
 import Movies from './pages/Movies';
 
@@ -24,6 +26,12 @@ const App = () => {
           </Route>
           <Route path="/books">
             <Books />
+          </Route>
+          <Route path="/character/:id">
+            <CharacterDetails />
+          </Route>
+          <Route path="/search-character">
+            <CharacterSearch />
           </Route>
         </Switch>
       </BrowserRouter>
