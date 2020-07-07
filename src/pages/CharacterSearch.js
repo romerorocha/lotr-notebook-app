@@ -9,12 +9,15 @@ const CharacterSearch = () => {
 
   const handleSearch = event => {
     const name = event.target.value;
+
+    if (!name) {
+      setResult([]);
+      return;
+    }
+
     API.searchByName(name).then(data => {
-      if (data && data.length > 20) {
-        setResult(data.slice(0, 20));
-      } else {
-        setResult(data);
-      }
+      const resultList = data.length > 20 ? data.slice(0, 20) : data;
+      setResult(resultList);
     });
   };
 

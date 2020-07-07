@@ -13,7 +13,7 @@ const CharacterDetails = () => {
     }
   }, [id]);
 
-  return (
+  return character._id ? (
     <Page>
       <div>
         <strong>Name: </strong>
@@ -21,7 +21,7 @@ const CharacterDetails = () => {
       </div>
       <div>
         <strong>Height: </strong>
-        {character.Height}
+        {character.height}
       </div>
       <div>
         <strong>Race: </strong>
@@ -45,7 +45,7 @@ const CharacterDetails = () => {
       </div>
       <div>
         <strong>Realm: </strong>
-        {character.realm}
+        {character.realm ? character.realm.split(',').join(', ') : 'Not known'}
       </div>
       <div>
         <strong>Wiki URL: </strong>
@@ -54,6 +54,8 @@ const CharacterDetails = () => {
         </a>
       </div>
     </Page>
+  ) : (
+    false
   );
 };
 
