@@ -6,9 +6,11 @@ import * as BooksAPI from '../api/books';
 import MovieList from '../components/MovieList';
 import Page from '../components/Page';
 import BookList from '../components/BookList';
+import CharacterList from '../components/CharacterList';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
+
   const [books, setBooks] = useState([]);
   const reviewdBooks = books.filter(book => book.reviews.length > 0);
 
@@ -19,6 +21,7 @@ const Home = () => {
 
   return (
     <Page>
+      <CharacterList />
       <MovieList
         title="Bookmarked Movies"
         movies={movies}
