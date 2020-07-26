@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import * as API from '../api/movies';
 import Action from './Action';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateMovies } from '../actions/movies';
 
 const SORT_BY = {
   NAME: { getSort: (a, b) => a.name.localeCompare(b.name) },
@@ -9,29 +11,28 @@ const SORT_BY = {
   },
 };
 
-const MovieList = ({ title, movies, setMovies, filter }) => {
+const MovieList = ({ title, setMovies, filter }) => {
+  const dispatch = useDispatch();
+
   // Component state
   const [sortBy, setSortBy] = useState(SORT_BY.ACADEMY_AWARDS);
+
+  // Redux integration
+  const movies = useSelector(state => state.movies);
 
   // Computed list
   const subList = movies.filter(filter).sort(sortBy.getSort);
 
-  // Handle movie updates
-  const updateMovie = movie => {
-    const updatedMovies = movies.map(m => (m._id === movie._id ? movie : m));
-    setMovies(updatedMovies);
+  // Handle component actions
+  const update = (id, newProps) => {
+    API.update(id, newProps).then(movie => dispatch(updateMovies(movie)));
   };
 
-  // Handle component actions
-  const vote = (id, option) => API.vote(id, option).then(updateMovie);
-
-  const setBookmarked = id =>
-    API.update(id, { bookmarked: true }).then(updateMovie);
-
-  const setWatched = id => API.update(id, { watched: true }).then(updateMovie);
-
-  const resetMovie = id =>
-    API.update(id, { watched: false, bookmarked: false }).then(updateMovie);
+  const setBookmarked = id => update(id, { bookmarked: true });
+  const setWatched = id => update(id, { watched: true });
+  const resetMovie = id => update(id, { watched: false, bookmarked: false });
+  const vote = (id, option) =>
+    API.vote(id, option).then(movie => dispatch(updateMovies(movie)));
 
   return (
     <div className="list">
