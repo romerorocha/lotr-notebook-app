@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateMovies } from '../actions/movies';
 import * as API from '../api/movies';
 import Action from './Action';
-import { useSelector, useDispatch } from 'react-redux';
-import { updateMovies } from '../actions/movies';
 
 const SORT_BY = {
   NAME: { getSort: (a, b) => a.name.localeCompare(b.name) },
