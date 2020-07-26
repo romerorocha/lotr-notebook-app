@@ -1,4 +1,4 @@
-import server from './config';
+import server from '../config/server';
 
 export const searchByName = name => {
   return server.get(`/characters/name/${name}`).then(res => res.data);

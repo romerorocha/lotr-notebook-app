@@ -1,4 +1,4 @@
-import server from './config';
+import server from '../config/server';
 
 export const getAllBooks = () => {
   return server.get('books').then(res => res.data);
