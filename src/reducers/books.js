@@ -1,12 +1,8 @@
-const { LOAD_BOOKS } = require('../actions/books');
+import { createReducer } from '@reduxjs/toolkit';
+import { loadBooks } from '../actions/books';
 
-const books = (state = [], action) => {
-  switch (action.type) {
-    case LOAD_BOOKS:
-      return action.books;
-    default:
-      return state;
-  }
+const cases = {
+  [loadBooks.fulfilled]: (state, action) => action.payload,
 };
 
-export default books;
+export default createReducer([], cases);
