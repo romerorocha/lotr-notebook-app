@@ -24,7 +24,8 @@ These are the major subjects, taught while building the app:
 - Sync data changes (UI & Server) :white_check_mark:
 - Redux
   - Actions, Reducers & Store :white_check_mark:
-  - Async Actions (thunks)
+  - Async Actions (thunks) :white_check_mark:
+  - Redux Toolkit :white_check_mark:
 - Material UI
   - UI libs overview
   - UI/UX improvements
