@@ -1,12 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-const BookList = ({ title, books }) => {
+const BookList = ({ title, filter }) => {
+  const books = useSelector(state => state.books);
+  const filteredBooks = filter ? books.filter(filter) : books;
+
   return (
     <div className="list">
       <h3>{title}</h3>
       <ul>
-        {books.map(book => (
+        {filteredBooks.map(book => (
           <li key={book._id} className="list-item">
             <div>
               <Link to={`/books/${book._id}`}>
