@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { loadBooks } from './actions/books';
+import { loadMovies } from './actions/movies';
 import Menu from './components/Menu';
 import BookDetails from './pages/BookDetails';
 import Books from './pages/Books';
@@ -7,17 +10,12 @@ import CharacterDetails from './pages/CharacterDetails';
 import CharacterSearch from './pages/CharacterSearch';
 import Home from './pages/Home';
 import Movies from './pages/Movies';
-import { useDispatch } from 'react-redux';
-import * as MoviesAPI from './api/movies';
-import * as BooksAPI from './api/books';
-import { loadMovies } from './actions/movies';
-import { loadBooks } from './actions/books';
 const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    MoviesAPI.getAllMovies().then(movies => dispatch(loadMovies(movies)));
-    BooksAPI.getAllBooks().then(books => dispatch(loadBooks(books)));
+    dispatch(loadMovies());
+    dispatch(loadBooks());
   }, [dispatch]);
 
   return (
