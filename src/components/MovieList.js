@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateMovies } from '../actions/movies';
-import * as API from '../api/movies';
+import {
+  addToBookmarks,
+  addToWatched,
+  resetMovie,
+  voteMovie,
+} from '../actions/movies';
 import Action from './Action';
 
 const SORT_BY = {
@@ -14,25 +18,10 @@ const SORT_BY = {
 const MovieList = ({ title, setMovies, filter }) => {
   const dispatch = useDispatch();
 
-  // Component state
   const [sortBy, setSortBy] = useState(SORT_BY.ACADEMY_AWARDS);
 
-  // Redux integration
   const movies = useSelector(state => state.movies);
-
-  // Computed list
   const subList = movies.filter(filter).sort(sortBy.getSort);
-
-  // Handle component actions
-  const update = (id, newProps) => {
-    API.update(id, newProps).then(movie => dispatch(updateMovies(movie)));
-  };
-
-  const setBookmarked = id => update(id, { bookmarked: true });
-  const setWatched = id => update(id, { watched: true });
-  const resetMovie = id => update(id, { watched: false, bookmarked: false });
-  const vote = (id, option) =>
-    API.vote(id, option).then(movie => dispatch(updateMovies(movie)));
 
   return (
     <div className="list">
@@ -60,12 +49,12 @@ const MovieList = ({ title, setMovies, filter }) => {
                   <Action
                     show
                     icon="fa-thumbs-up"
-                    action={() => vote(movie._id, 'up')}
+                    action={() => dispatch(voteMovie(movie._id, 'up'))}
                   />
                   <Action
                     show
                     icon="fa-thumbs-down"
-                    action={() => vote(movie._id, 'down')}
+                    action={() => dispatch(voteMovie(movie._id, 'down'))}
                   />
                 </div>
                 <div>{`Academy Awards: ${movie.academyAwardWins}`}</div>
@@ -73,17 +62,17 @@ const MovieList = ({ title, setMovies, filter }) => {
                   <span>Actions: </span>
                   <Action
                     show={!marked}
-                    action={() => setBookmarked(movie._id)}
+                    action={() => dispatch(addToBookmarks(movie._id))}
                     icon="fa-star"
                   />
                   <Action
                     show={!marked}
-                    action={() => setWatched(movie._id)}
+                    action={() => dispatch(addToWatched(movie._id))}
                     icon="fa-check"
                   />
                   <Action
                     show={marked}
-                    action={() => resetMovie(movie._id)}
+                    action={() => dispatch(resetMovie(movie._id))}
                     icon="fa-times"
                   />
                 </div>
