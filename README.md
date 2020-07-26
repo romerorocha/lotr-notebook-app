@@ -1,7 +1,7 @@
 # LOTR Notebook App
 A notebook app about J. R. R. Tolkien's "The Lord of The Rings", made for teaching React Development.
 
-It has been built iteractivetly, adding more requiriments and making use of new libraries on each new class. Each class has its own branch.
+It has been built iteratively, adding more requirements and making use of new libraries on each new class. Each class has its own branch.
 
 ## Main Topics
 
@@ -12,19 +12,24 @@ These are the major subjects, taught while building the app:
   - Converting plain HTML code to React Components :white_check_mark:
   - API integration and data fetching :white_check_mark:
   - State management :white_check_mark:
+  - Work with lists :white_check_mark:
   - Add filtering :white_check_mark:
   - Add sorting :white_check_mark:
+  - Perform efficient searches :white_check_mark:
+  - Work with forms :white_check_mark:
+  - Add "deboucing" behavior :white_check_mark:
+  - Perform paginated listing :white_check_mark:
 - React Router :white_check_mark:
 - Architecture Refactoring :white_check_mark:
-- Changing data (UI + Server)
+- Sync data changes (UI & Server) :white_check_mark:
 - Redux
-  - Actions, Reducers & Store
-  - Async Actions (thunk)
+  - Actions, Reducers & Store :white_check_mark:
+  - Async Actions (thunks)
 - Material UI
   - UI libs overview
   - UI/UX improvements
 
-## Instalation
+## Installation
 
 To install all module dependencies, run:
 ```sh
@@ -36,7 +41,7 @@ To run the application server:
 yarn start
 ```
 
-NPM could be used instead, but YARN is recommended. Server  starts listening on PORT `3000`, if avaliable.
+NPM could be used instead, but YARN is recommended. Server  starts listening on PORT `3000`, if available.
 
 ## Backend Server
 
