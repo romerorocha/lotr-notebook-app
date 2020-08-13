@@ -16,7 +16,7 @@ const Header = () => {
   const classes = useStyles();
 
   return (
-    <AppBar position="static">
+    <AppBar position="absolute">
       <Toolbar>
         <Typography variant="h6" className={classes.title}>
           The Lord of The Rings App
