@@ -5,10 +5,12 @@ import Movies from './Movies';
 import Characters from './Characters';
 import CharactersSearch from './CharactersSearch';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Header from './Header';
 
 const App = () => {
   return (
     <BrowserRouter>
+      <Header />
       <Switch>
         <Route exact path="/">
           <Home />

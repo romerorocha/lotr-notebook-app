@@ -1,19 +1,19 @@
 import React from 'react';
-import MuiButton from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button';
 
 const Primary = ({ children }) => {
   return (
-    <MuiButton variant="contained" color="primary">
+    <Button variant="contained" color="primary">
       {children}
-    </MuiButton>
+    </Button>
   );
 };
 
 const Secondary = ({ children }) => {
   return (
-    <MuiButton variant="outlined" color="primary">
+    <Button variant="outlined" color="primary">
       {children}
-    </MuiButton>
+    </Button>
   );
 };
 
