@@ -7,6 +7,7 @@ import CharactersSearch from './CharactersSearch';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Header from './Header';
 import PageBody from './PageBody';
+import BookDetails from './BookDetails';
 
 const App = () => {
   return (
@@ -16,6 +17,9 @@ const App = () => {
         <Switch>
           <Route exact path="/">
             <Home />
+          </Route>
+          <Route path="/books/:id">
+            <BookDetails />
           </Route>
           <Route path="/books">
             <Books />
